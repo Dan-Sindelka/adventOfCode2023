@@ -9,8 +9,6 @@ class DataArray:
         self.data = []
         self.arrayOfNumbers = []
         self.arrayOfSpecial = []
-        self.collum = 0
-        self.row = 0
         self.finalResult = 0
 
     def __getArray__(self, indexx, indexy): 
@@ -19,7 +17,6 @@ class DataArray:
     def getData(self, data): # init array :D
         for line in data:
             self.data.append(list(line))
-
         self.maxrow = len(self.data)
         self.maxcollum = len(self.data[0])
 
@@ -28,11 +25,6 @@ class DataArray:
             for col in range(self.maxcollum):
                 if (self.data[row][col].isnumeric()):
                     self.arrayOfNumbers.append([row, col])        
-                if match("[\d.]", self.data[row][col]) != None:
-                    pass
-                else:    
-                    self.arrayOfSpecial.append(self.data[row][col])
-
     
     def succesNeighbor(self, iterator):
         try:
@@ -68,8 +60,6 @@ class DataArray:
             self.arrayOfNumbers.pop(0)
         if Success:
             self.finalResult += int(''.join(helper))
-            print(helper)
-            print(self.finalResult)
 
 def checkNeighbors(dataArray, x, y, additional): 
     if additional:
@@ -82,6 +72,10 @@ def checkNeighbors(dataArray, x, y, additional):
         # is still inside the matrix
         if (-1 < x + dx < dataArray.maxrow and
             -1 < y + dy < dataArray.maxcollum):
+            #other option could be if match("[\d.]", self.data[row][col]) != None:
+                #     pass
+                # else:    
+                #     self.arrayOfSpecial.append(self.data[row][col])
             if match("[@+_=!#$%^&*()<>?\/|}{~:-]", dataArray.__getArray__(dx + x,dy + y)) != None:
                 return True
     return False
@@ -96,6 +90,3 @@ while len(dataArray.arrayOfNumbers) > 0: #mayhaps instead of 0 for succ&notsucc 
     else:
         dataArray.notsuccesNeighbor(0)
 print(dataArray.finalResult)
-print(len(dataArray.arrayOfSpecial))
-#if match("[@+_=!#$%^&*()<>?\/|}{~:-]", dataArray.__getArray__(-1+ 7,1 + 6)) != None:
-print(dataArray.__getArray__(6 - 1, 4 + 1))
