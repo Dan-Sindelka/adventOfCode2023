@@ -13,8 +13,9 @@ class DataArray:
 
     def __getArray__(self, indexx, indexy): 
         return self.data[indexx][indexy]
-
-    def getData(self, data): # init array :D
+       
+    # init array :D
+    def getData(self, data):
         for line in data:
             self.data.append(list(line))
         self.maxrow = len(self.data)
@@ -40,7 +41,7 @@ class DataArray:
 
     def notsuccesNeighbor(self, iterator):
         try:
-            if checkNeighbors(dataArray, self.arrayOfNumbers[iterator][0], self.arrayOfNumbers[iterator][1], True) == True:
+            if checkNeighbors(dataArray, self.arrayOfNumbers[iterator][0], self.arrayOfNumbers[iterator][1], True):
                 self.succesNeighbor(iterator)
             else:
                 if (self.arrayOfNumbers[iterator + 1][1] == (self.arrayOfNumbers[iterator][1] + 1)):
@@ -85,7 +86,7 @@ dataArray.getData(data)
 dataArray.getArrayOfNumbers()
 x = 0
 while len(dataArray.arrayOfNumbers) > 0: #mayhaps instead of 0 for succ&notsucc send 1?
-    if checkNeighbors(dataArray, dataArray.arrayOfNumbers[0][0], dataArray.arrayOfNumbers[0][1], False) == True:
+    if checkNeighbors(dataArray, dataArray.arrayOfNumbers[0][0], dataArray.arrayOfNumbers[0][1], False):
         dataArray.succesNeighbor(0)
     else:
         dataArray.notsuccesNeighbor(0)
