@@ -25,13 +25,13 @@ class HelpSolution:
     def __init__(self):
         self.finalResult = 0
 
-    # put winning numbers and lot numbers into different sets and use intersection to find number of matching numbers to use
+    # put winning numbers and lot numbers into different sets and use intersection to find number of matching numbers
     def logic(self):
         for card in data:
             cardname, results = card.strip().split(":")            
             listOfWinningNumbers, ListOfLotNumbers = results.replace("  ", " ").strip().split("|") # replace to handle additional space in front of single numbers
             curatedWinningNumbers = set(listOfWinningNumbers.strip().split(" ")) # strip needed to delete additional spaces at the end
-            curatedLotNumbers = set(ListOfLotNumbers.strip().split(" "))
+            curatedLotNumbers = set(ListOfLotNumbers.strip().split(" ")) #question is if translation to sets is worth it from performace point of view
             test = set.intersection(curatedWinningNumbers,curatedLotNumbers)
             if len(test) != 0:
                 self.finalResult += 2**(len(test)-1)
